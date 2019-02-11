@@ -5,8 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon src/index.js",
-    "test": "jest",
-    "lint": "eslint \"**/*.js\""
+    "test": "jest src/",
+    "lint": "eslint \"src/**/*.js\""
   },
   "jest": {
     "testEnvironment": "node"
