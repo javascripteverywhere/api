@@ -1,7 +1,7 @@
 const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express');
 
-// Run our server on a port specified in our .env file or port 4000
+// Run the server on a port specified in our .env file or port 4000
 const port = process.env.PORT || 4000;
 
 let notes = [
