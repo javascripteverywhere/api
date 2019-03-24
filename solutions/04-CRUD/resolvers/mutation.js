@@ -10,7 +10,7 @@ module.exports = {
       await models.Note.findOneAndRemove({ _id: id });
       return true;
     } catch (err) {
-      throw new Error('Error deleting the note');
+      return false;
     }
   },
   updateNote: async (parent, { content, id }, { models }) => {

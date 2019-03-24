@@ -7,6 +7,8 @@ module.exports = {
     mongoose.set('useNewUrlParser', true);
     // Use `findOneAndUpdate()` in place of findAndModify()
     mongoose.set('useFindAndModify', false);
+    // Use `createIndex()` in place of `ensureIndex()`
+    mongoose.set('useCreateIndex', true);
     // Connect to the DB
     mongoose.connect(DB_HOST);
     // Log an error if we fail to connect
