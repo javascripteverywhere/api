@@ -16,12 +16,15 @@ const app = express();
 
 db.connect(DB_HOST);
 
+// get the user info from a JWT
 const getUser = async token => {
   if (token) {
     try {
+      // return the user information from the token
       return await jwt.verify(token, process.env.JWT_SECRET);
     } catch (err) {
-      throw new Error('Session expired');
+      // if there's a problem with the token, throw an error
+      throw new Error('Session invalid');
     }
   }
 };
@@ -35,8 +38,6 @@ const server = new ApolloServer({
     const token = req.headers.authorization;
     // try to retrieve a user with the token
     const user = await getUser(token);
-    // for now, let's log the user to the console:
-    console.log(user);
     // add the db models and the user to the context
     return { models, user };
   }
