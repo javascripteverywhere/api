@@ -22,6 +22,9 @@ module.exports = gql`
   type Query {
     notes: [Note!]!
     note(id: ID): Note!
+    user(username: String!): User
+    users: [User!]!
+    me: User!
   }
 
   type Mutation {
