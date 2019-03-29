@@ -17,7 +17,8 @@ module.exports = {
 
     return await models.Note.create({
       content: args.content,
-      author: mongoose.Types.ObjectId(user.id)
+      author: mongoose.Types.ObjectId(user.id),
+      favoriteCount: 0
     });
   },
   deleteNote: async (parent, { id }, { models, user }) => {
@@ -71,6 +72,51 @@ module.exports = {
         new: true
       }
     );
+  },
+  toggleFavorite: async (parent, { id }, { models, user }) => {
+    // If no user context is passed, don't create a note
+    if (!user) {
+      throw new AuthenticationError();
+    }
+
+    // Check to see if the user has already favorited the note
+    // If so, remove the user from the favoritedBy array and subtract 1 from the favoriteCount count
+    let noteCheck = await models.Note.findById(id);
+    const hasUser = noteCheck.favoritedBy.indexOf(user.id);
+
+    if (hasUser >= 0) {
+      return await models.Note.findByIdAndUpdate(
+        id,
+        {
+          $pull: {
+            favoritedBy: mongoose.Types.ObjectId(user.id)
+          },
+          $inc: {
+            favoriteCount: -1
+          }
+        },
+        {
+          // Set new to true to return the updated doc
+          new: true
+        }
+      );
+    } else {
+      return await models.Note.findByIdAndUpdate(
+        id,
+        {
+          $push: {
+            favoritedBy: mongoose.Types.ObjectId(user.id)
+          },
+          $inc: {
+            favoriteCount: 1
+          }
+        },
+        {
+          new: true,
+          useFindAndModify: false
+        }
+      );
+    }
   },
   signUp: async (parent, { username, email, password }, { models }) => {
     // normalize email address
