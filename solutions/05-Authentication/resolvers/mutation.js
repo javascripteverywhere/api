@@ -1,6 +1,9 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { AuthenticationError } = require('apollo-server-express');
+const {
+  AuthenticationError,
+  ForbiddenError
+} = require('apollo-server-express');
 require('dotenv').config();
 
 const gravatar = require('../util/gravatar');
