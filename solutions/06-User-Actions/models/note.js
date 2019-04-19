@@ -8,12 +8,15 @@ const noteSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    // reference the author's object ID
     author: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
       required: true
     },
     favoriteCount: {
-      type: Number
+      type: Number,
+      default: 0
     },
     favoritedBy: [
       {
