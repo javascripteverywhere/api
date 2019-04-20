@@ -84,6 +84,8 @@ module.exports = {
     let noteCheck = await models.Note.findById(id);
     const hasUser = noteCheck.favoritedBy.indexOf(user.id);
 
+    // if the user exists in the list
+    //pull them from the list and reduce the favoriteCount by 1
     if (hasUser >= 0) {
       return await models.Note.findByIdAndUpdate(
         id,
@@ -101,6 +103,8 @@ module.exports = {
         }
       );
     } else {
+      // if the user doesn't exists in the list
+      // add them to the list and increment the favoriteCount by 1
       return await models.Note.findByIdAndUpdate(
         id,
         {

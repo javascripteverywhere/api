@@ -7,7 +7,7 @@ const { GraphQLDateTime } = require('graphql-iso-date');
 module.exports = {
   Query,
   Mutation,
-  // Note,
-  // User,
+  Note,
+  User,
   DateTime: GraphQLDateTime
 };
