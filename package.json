@@ -4,8 +4,9 @@
   "description": "API code examples for JavaScript Everywhere by Adam Scott, published by O'Reilly Media",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "nodemon src/index.js",
     "dev": "nodemon src/index.js",
+    "final": "nodemon final/index.js",
     "test": "jest src/",
     "lint": "eslint \"src/**/*.js\""
   },
