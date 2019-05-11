@@ -8,6 +8,7 @@
     "dev": "nodemon src/index.js",
     "final": "nodemon final/index.js",
     "test": "jest src/",
+    "seed": "node final/util/seed/index.js",
     "lint": "eslint \"src/**/*.js\""
   },
   "jest": {
@@ -47,6 +48,7 @@
     "eslint-config-prettier": "4.0.0",
     "eslint-plugin-prettier": "3.0.1",
     "faker": "4.1.0",
-    "jest": "24.1.0"
+    "jest": "24.1.0",
+    "node-fetch": "^2.5.0"
   }
 }
