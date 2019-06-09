@@ -29,9 +29,9 @@ module.exports = {
       cursorQuery = { _id: { $lt: cursor } };
     }
 
-    // find the limit + 1 of notes in our db
+    // find the limit + 1 of notes in our db, sorted newest to oldest
     let notes = await models.Note.find(cursorQuery)
-      .sort({ createdAt: -1 })
+      .sort({ _id: -1 })
       .limit(limit + 1);
 
     // if the number of notes we find exceeds our limit
