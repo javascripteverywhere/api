@@ -17,7 +17,7 @@ The best place to get help is our Spectrum channel, [spectrum.chat/jseverywhere]
 If you're developing a UI and would like to use the completed project, copy the files to the completed files to the `src` as follows: 
 
 ```
-cp -rf ./final/* ./new/
+cp -rf ./final/* ./src/
 ```
 
 ## Seed Data
