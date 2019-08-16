@@ -24,7 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "apollo-server-express": "2.4.0",
-    "bcrypt": "^3.0.5",
+    "bcrypt": "3.0.6",
     "connect-mongo": "2.0.3",
     "cors": "2.8.5",
     "dotenv": "6.1.0",
@@ -36,7 +36,7 @@
     "graphql-validation-complexity": "0.2.4",
     "helmet": "3.15.0",
     "jsonwebtoken": "^8.5.1",
-    "marked": "0.5.2",
+    "marked": "^0.7.0",
     "md5": "2.2.1",
     "mongoose": "5.4.6",
     "nodemon": "1.18.7",
@@ -48,7 +48,7 @@
     "eslint-config-prettier": "4.0.0",
     "eslint-plugin-prettier": "3.0.1",
     "faker": "4.1.0",
-    "jest": "24.1.0",
-    "node-fetch": "^2.5.0"
+    "node-fetch": "^2.5.0",
+    "prettier": "^1.18.2"
   }
 }
