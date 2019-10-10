@@ -1,5 +1,7 @@
 # JavaScript Everywhere API
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/javascripteverywhere/api.svg)](https://greenkeeper.io/)
+
 > API code examples for JavaScript Everywhere by Adam Scott, published by O'Reilly Media
 
 ## Getting Help
