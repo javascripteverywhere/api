@@ -1,3 +1,5 @@
+<img src="https://www.jseverywhere.io/static/5120b041712340b6b6ac5133facdd792/fbe2f/cover.png" width="200" align="right" />
+
 # JavaScript Everywhere API
 
 > API code examples for JavaScript Everywhere by Adam Scott, published by O'Reilly Media
