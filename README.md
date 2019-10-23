@@ -2,7 +2,7 @@
 
 # JavaScript Everywhere API
 
-> API code examples for JavaScript Everywhere by Adam Scott, published by O'Reilly Media
+This repository contains code examples for the API chapters of [_JavaScript Everywhere_](https://www.jseverywhere.io/) by Adam D. Scott, published by O'Reilly Media
 
 ## Getting Help
 
@@ -27,6 +27,12 @@ cp -rf ./final/* ./src/
 To seed data for local development: `npm run seed`. The password for all of the seeded users is `password`.
 
 Each time this command is run, it will generate 10 users and 25 notes.
+
+## Related Repositories
+
+- [Web 💻 ](https://github.com/javascripteverywhere/web)
+- [Mobile 🤳](https://github.com/javascripteverywhere/mobile)
+- [Desktop 🖥️](https://github.com/javascripteverywhere/desktop)
 
 ## Code of Conduct
 
