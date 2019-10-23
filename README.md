@@ -1,3 +1,5 @@
+<img src="cover.png" width="200" align="right" />
+
 # JavaScript Everywhere API
 
 > API code examples for JavaScript Everywhere by Adam Scott, published by O'Reilly Media
