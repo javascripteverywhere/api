@@ -23,7 +23,6 @@ module.exports = {
   },
   deleteNote: async (parent, { id }, { models, user }) => {
     // if not a user, throw an Authentication Error
-    // we check to see if the author owns the note in the query
     if (!user) {
       throw new AuthenticationError('You must be signed in to delete a note');
     }
@@ -32,7 +31,7 @@ module.exports = {
     const note = await models.Note.findById(id);
     // if the note owner and current user don't match, throw a forbidden error
     if (note && String(note.author) !== user.id) {
-      throw new ForbiddenError("You don't have permissions to update the note");
+      throw new ForbiddenError("You don't have permissions to delete the note");
     }
 
     try {
@@ -46,7 +45,6 @@ module.exports = {
   },
   updateNote: async (parent, { content, id }, { models, user }) => {
     // if not a user, throw an Authentication Error
-    // we check to see if the author owns the note in the query
     if (!user) {
       throw new AuthenticationError('You must be signed in to update a note');
     }
@@ -74,18 +72,17 @@ module.exports = {
     );
   },
   toggleFavorite: async (parent, { id }, { models, user }) => {
-    // If no user context is passed, don't create a note
+    // if no user context is passed, throw auth error
     if (!user) {
       throw new AuthenticationError();
     }
 
-    // Check to see if the user has already favorited the note
-    // If so, remove the user from the favoritedBy array and subtract 1 from the favoriteCount count
+    // check to see if the user has already favorited the note
     let noteCheck = await models.Note.findById(id);
     const hasUser = noteCheck.favoritedBy.indexOf(user.id);
 
     // if the user exists in the list
-    //pull them from the list and reduce the favoriteCount by 1
+    // pull them from the list and reduce the favoriteCount by 1
     if (hasUser >= 0) {
       return await models.Note.findByIdAndUpdate(
         id,
