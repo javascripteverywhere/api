@@ -53,7 +53,7 @@ const resolvers = {
   Mutation: {
     newNote: (parent, args) => {
       let noteValue = {
-        id: notes.length + 1,
+        id: String(notes.length + 1),
         content: args.content,
         author: 'Adam Scott'
       };
