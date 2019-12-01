@@ -7,12 +7,12 @@
     "start": "nodemon src/index.js",
     "dev": "nodemon src/index.js",
     "final": "nodemon final/index.js",
-    "test": "jest src/",
     "seed": "node final/util/seed/index.js",
     "lint": "eslint \"src/**/*.js\""
   },
-  "jest": {
-    "testEnvironment": "node"
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:javascripteverywhere/api.git"
   },
   "nodemonConfig": {
     "ignore": [
