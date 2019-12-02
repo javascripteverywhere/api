@@ -135,9 +135,8 @@ module.exports = {
       });
 
       // create and return the json web token
-      return await jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      return jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     } catch (err) {
-      console.log(err);
       // if there's a problem creating the account, throw an error
       throw new Error('Error creating account');
     }
@@ -164,6 +163,6 @@ module.exports = {
     }
 
     // create and return the json web token
-    return await jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    return jwt.sign({ id: user._id }, process.env.JWT_SECRET);
   }
 };
