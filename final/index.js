@@ -26,11 +26,11 @@ app.use(helmet());
 app.use(cors());
 
 // get the user info from a JWT
-const getUser = async token => {
+const getUser = token => {
   if (token) {
     try {
       // return the user information from the token
-      return await jwt.verify(token, process.env.JWT_SECRET);
+      return jwt.verify(token, process.env.JWT_SECRET);
     } catch (err) {
       // if there's a problem with the token, throw an error
       throw new Error('Session invalid');
@@ -48,7 +48,7 @@ const server = new ApolloServer({
     // get the user token from the headers
     const token = req.headers.authorization;
     // try to retrieve a user with the token
-    const user = await getUser(token);
+    const user = getUser(token);
     // add the db models and the user to the context
     return { models, user };
   }
