@@ -1,10 +1,10 @@
 module.exports = {
   // Resolve the author info for a note when requested
-  async author(note, args, { models }) {
+  author: async (note, args, { models }) => {
     return await models.User.findById(note.author);
   },
   // Resolved the favoritedBy info for a note when requested
-  async favoritedBy(note, args, { models }) {
+  favoritedBy: async (note, args, { models }) => {
     return await models.User.find({ _id: { $in: note.favoritedBy } });
   }
 };
