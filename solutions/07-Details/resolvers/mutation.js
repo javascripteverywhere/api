@@ -113,8 +113,7 @@ module.exports = {
           }
         },
         {
-          new: true,
-          useFindAndModify: false
+          new: true
         }
       );
     }
