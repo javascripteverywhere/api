@@ -12,15 +12,18 @@ let notes = [
 
 //Construct a schema, using GraphQL schema language
 const typeDefs = gql`
+  type Note {
+    id: ID!
+    content: String!
+    author: String!
+  }
   type Query {
     hello: String!
     notes: [Note!]!
     note(id: ID!): Note!
   }
-  type Note {
-    id: ID!
-    content: String!
-    author: String!
+  type Mutation {
+    newNote(content: String!): Note!
   }
 `;
 
@@ -31,6 +34,17 @@ const resolvers = {
     notes: () => notes,
     note: (parent, args) => {
       return notes.find(note => note.id === args.id);
+    }
+  },
+  Mutation: {
+    newNote: (parent, args) => {
+      let noteValue = {
+        id: String(notes.length + 1),
+        content: args.content,
+        author: 'Adam Scott'
+      };
+      notes.push(noteValue);
+      return noteValue;
     }
   }
 };
