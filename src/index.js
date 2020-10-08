@@ -10,26 +10,20 @@ const port = process.env.PORT || 4000;
 // Store the DB_HOST value as a variable
 const DB_HOST = process.env.DB_HOST;
 
-let notes = [
-  { id: '1', content: 'This is a note', author: 'Adam Scott' },
-  { id: '2', content: 'This is another note', author: 'Harlow Everly' },
-  { id: '3', content: 'Oh hey look, another note!', author: 'Riley Harrison' }
-];
-
 //Construct a schema, using GraphQL schema language
 const typeDefs = gql`
   type Note {
-    id: ID!
-    content: String!
-    author: String!
+    id: ID
+    content: String
+    author: String
   }
   type Query {
-    hello: String!
-    notes: [Note!]!
-    note(id: ID!): Note!
+    hello: String
+    notes: [Note]
+    note(id: ID): Note
   }
   type Mutation {
-    newNote(content: String!): Note!
+    newNote(content: String!): Note
   }
 `;
 
@@ -40,8 +34,8 @@ const resolvers = {
     notes: async () => {
       return await models.Note.find();
     },
-    note: (parent, args) => {
-      return notes.find(note => note.id === args.id);
+    note: async (parent, args) => {
+      return await models.Note.findById(args.id);
     }
   },
   Mutation: {
