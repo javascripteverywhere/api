@@ -29,12 +29,16 @@ const typeDefs = gql`
         notes: [Note!]!
         note(id: ID!): Note
     }
+
     type Note {
         id: ID!
         content: String!
         author: String!
     }
 
+    type Mutation {
+        newNote(content: String): Note!
+    }
 `;
 
 const resolvers = {
@@ -43,6 +47,18 @@ const resolvers = {
         notes: () => notes,
         note: (parent, args) => {
             return notes.find(note => note.id === args.id);
+        },
+    },
+    Mutation: {
+        newNote: (parent, args) => {
+            let newNoteData = {
+                id: String(notes.length + 1),
+                content: args.content,
+                author: "Leslie Rodriguez"
+            }
+        
+        notes.push(newNoteData)
+        return newNoteData
         }
     }
 }
