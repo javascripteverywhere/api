@@ -1,6 +1,9 @@
 const { gql } = require('apollo-server-express');
+const { models } = require('mongoose');
 
-const typeDefs = gql`
+module.exports = gql`
+    scalar DateTime
+
     type Query {
         hello: String
         notes: [Note!]!
@@ -11,6 +14,8 @@ const typeDefs = gql`
         id: ID!
         content: String!
         author: String!
+        createdAt: DateTime!
+        updatedAt: DateTime!
     }
 
     type Mutation {
@@ -19,5 +24,3 @@ const typeDefs = gql`
         deleteNote(id: ID!): Boolean!
     }
 `;
-
-module.exports = typeDefs;
