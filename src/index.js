@@ -48,7 +48,7 @@ const typeDefs = gql`
 const resolvers = {
     Query: {
         hello: () => "hello world",
-        notes: () => async () => {
+        notes: async () => {
             return await models.Note.find();
         },
         note: (parent, args) => {
@@ -56,15 +56,11 @@ const resolvers = {
         },
     },
     Mutation: {
-        newNote: (parent, args) => {
-            let newNoteData = {
-                id: String(notes.length + 1),
-                content: args.content,
-                author: "Leslie Rodriguez"
-            }
-        
-        notes.push(newNoteData)
-        return newNoteData
+        newNote: async (parent, args) => {
+        return await models.Note.create({
+            content: args.content,
+            author: 'Leslie Roriguez'
+        })
         }
     }
 }
