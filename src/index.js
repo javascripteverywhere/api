@@ -3,8 +3,10 @@ const app = express();
 
 const { ApolloServer, gql } = require('apollo-server-express');
 
-require('dotenv').config();
 const db = require('./db');
+const models = require('./models');
+
+require('dotenv').config();
 
 let notes = [
     {
