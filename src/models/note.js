@@ -7,8 +7,8 @@ const noteSchema= new mongoose.Schema(
             required: true
         }, 
         author: {
-            name: String,
-            // required: true
+            type: String,
+            required: true
         }
     },
     {

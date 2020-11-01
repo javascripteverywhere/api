@@ -48,7 +48,9 @@ const typeDefs = gql`
 const resolvers = {
     Query: {
         hello: () => "hello world",
-        notes: () => notes,
+        notes: () => async () => {
+            return await models.Note.find();
+        },
         note: (parent, args) => {
             return notes.find(note => note.id === args.id);
         },
