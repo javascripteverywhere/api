@@ -1,3 +1,6 @@
+// Mongoose is a library that simplifies working with MongoDB in a Node.js
+// This file contains the code for our datatbase connection.
+
 const mongoose = require('mongoose');
 
 module.exports = {
