@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+// Apollo server enables us to serve data as a graphql API from a Node.js application.
 const { ApolloServer } = require('apollo-server-express');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
@@ -9,7 +9,6 @@ const db = require('./db');
 const models = require('./models');
 
 require('dotenv').config();
-
 
 const server = new ApolloServer({ 
     typeDefs, 
