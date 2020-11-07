@@ -8,13 +8,35 @@ const resolvers = require('./resolvers');
 const db = require('./db');
 const models = require('./models');
 
+const jwt = require('jsonwebtoken');
+
+// get the user info from a JWT
+const getUser = token => {
+    if (token) {
+        try {
+            //return the user info from the token
+            return jwt.verify(token, process.env.JWT_SECRET);
+        } catch (err) {
+            // if there is a problem with the token, throw an error
+            throw new Error('Session Invalid');
+        }
+    }
+}
+
 require('dotenv').config();
 
 const server = new ApolloServer({ 
     typeDefs, 
     resolvers,
-    context: () => {
-        return { models };
+    context: ({ req }) => {
+        // get the user token from the headers
+        const token = req.headers.authorization;
+        // try to retrieve a user with the token
+        const user = getUser(token);
+        // for now, log the user to console
+        console.log(user);
+        // add models and user to context
+        return { models, user };
     }
 });
 
