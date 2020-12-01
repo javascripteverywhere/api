@@ -1,5 +1,7 @@
+const { gql } = require('apollo-server-express');
+
 //Construct a schema, using GraphQL schema language
-const typeDefs = gql`
+module.exports = gql`
   type Note {
     id: ID
     content: String
