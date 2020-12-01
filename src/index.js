@@ -10,23 +10,6 @@ const port = process.env.PORT || 4000;
 // Store the DB_HOST value as a variable
 const DB_HOST = process.env.DB_HOST;
 
-//Construct a schema, using GraphQL schema language
-const typeDefs = gql`
-  type Note {
-    id: ID
-    content: String
-    author: String
-  }
-  type Query {
-    hello: String
-    notes: [Note]
-    note(id: ID): Note
-  }
-  type Mutation {
-    newNote(content: String!): Note
-  }
-`;
-
 // Provide resolver functions to our schema fields
 const resolvers = {
   Query: {
