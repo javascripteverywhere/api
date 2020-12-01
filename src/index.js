@@ -13,7 +13,6 @@ const DB_HOST = process.env.DB_HOST;
 // Provide resolver functions to our schema fields
 const resolvers = {
   Query: {
-    hello: () => 'Hello World!',
     notes: async () => {
       return await models.Note.find();
     },
