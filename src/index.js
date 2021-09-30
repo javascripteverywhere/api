@@ -1,67 +1,57 @@
 const express = require('express');
-const { ApolloServer, gql } = require('apollo-server-express');
+const app = express();
+const jwt = require('jsonwebtoken');
+const {ApolloServer} = require('apollo-server-express');
 
 require('dotenv').config();
-
-const DB_HOST = process.env.DB_HOST;
 const port = process.env.PORT || 4000;
-
+const DB_HOST = process.env.DB_HOST;
 
 const db = require('./db');
 db.connect(DB_HOST);
+const models = require('./models');
 
-const models = require('./models')
+const typeDefs = require('./schema');
+const resolvers = require('./resolvers');
+
+app.get("/users", async (req, res) => {
+    const data = await models.User.find();
+    res.json(data)
+})
 
 
-const typeDefs = gql`
-    type Note {
-        id: ID!,
-        content: String!,
-        author: String!
+app.get("/notes", async (req, res) => {
+    const data = await models.Note.find();
+    res.json(data)
+})
+
+//add fn for check user token
+const getUser = token => {
+    if (token) {
+        try {
+            return jwt.verify(token, process.env.JWT_SECRET);
+        } catch (e) {
+            throw new Error("Session error!!!");
+        }
     }
-
-    type Query {
-        notes: [Note!]!,
-        note(id: ID!): Note!
-    }
-
-    type Mutation {
-        newNote(content: String!): Note!
-    }
-
-`;
-
-const resolvers = {
-  Query: {
-    notes: async () => await models.Note.find(),
-    note: (parent, args) => {
-      return models.Note.findById(args.id);
-    }
-  },
-
-  Mutation: {
-
-    newNote: async (parent, args) => {
-      return await models.Note.create({
-        content: args.content,
-        author: "Olek Kalashnyk"
-      });
-    }
-  }
-
 };
 
 
-const app = express();
-
-const server = new ApolloServer({ typeDefs, resolvers });
-
-server.applyMiddleware({ app, path: '/api' });
-
-app.get('/', (req, res) => {
-  res.send('hello');
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: ({req}) => {
+        const token = req.headers.authorization;
+        const user = getUser(token);
+        console.log(user)
+        return {models, user};
+    }
 });
 
-app.listen(port, () => {
-  console.log(`App start  http://localhost:${port}`);
-});
+server.applyMiddleware({app, path: '/api'});
+
+app.listen({port}, () =>
+    console.log(
+        `GraphQL Server running at http://localhost:${port}${server.graphqlPath}`
+    )
+);
