@@ -35,7 +35,7 @@
     "graphql-validation-complexity": "0.2.4",
     "helmet": "3.21.2",
     "jsonwebtoken": "8.5.1",
-    "marked": "0.7.0",
+    "marked": "4.0.10",
     "md5": "2.2.1",
     "mongoose": "5.7.13",
     "nodemon": "1.18.7",
