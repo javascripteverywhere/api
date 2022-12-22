@@ -34,7 +34,7 @@
     "graphql-iso-date": "3.6.1",
     "graphql-validation-complexity": "0.2.4",
     "helmet": "3.21.2",
-    "jsonwebtoken": "8.5.1",
+    "jsonwebtoken": "9.0.0",
     "marked": "0.7.0",
     "md5": "2.2.1",
     "mongoose": "5.7.13",
