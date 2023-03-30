@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 18.14.2
 
-      - name: Config GitHub user
+      - name: Config GitHub user if needs
         run: |
           git config user.name version-bot 
           git config user.email ci@test.local
