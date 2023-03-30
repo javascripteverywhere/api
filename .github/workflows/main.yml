@@ -1,0 +1,43 @@
+name: Versioning
+
+on:
+  pull_request:
+    branches:
+      - master
+    types: [closed]
+    
+jobs:
+  raise_version:
+    if: github.event.pull_request.merged == true
+    name: Raise version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v3
+
+      - name: Setup NodeJS 
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.14.2
+
+      - name: Config GitHub user
+        run: |
+          git config user.name version-bot 
+          git config user.email ci@test.local
+
+      - name: Bump major version
+        if: startsWith(github.head_ref, 'breaking/')
+        run: npm version major
+
+      - name: Bump minor version
+        if: startsWith(github.head_ref, 'feature/')
+        run: npm version minor
+
+      - name: Bump patch version
+        if: |
+          startsWith(github.head_ref, 'fix/') || 
+          startsWith(github.head_ref, 'chore/')
+        run: npm version patch
+
+      - name: Push change
+        run: git push
