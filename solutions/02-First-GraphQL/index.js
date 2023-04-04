@@ -47,7 +47,7 @@ const resolvers = {
     hello: () => 'Hello world!',
     notes: () => notes,
     note: (parent, args) => {
-      return notes.find(note => note.id === args.id);
+      return notes.find(note => note.id == args.id);
     }
   },
   Mutation: {
